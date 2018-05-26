@@ -1,0 +1,81 @@
+<!-- -->
+<ion-header>
+
+  <ion-navbar  color="primary">
+    <ion-title>
+      <span ion-text>{{ service.name }}</span>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="common-bg">
+  <!--slides-->
+
+  <!--services-->
+  <ion-grid class="border-bottom dark-bg">
+    <ion-row>
+      <ion-col text-center>
+        <div class="text-sm">
+          <div>
+            <ion-icon name="time" class="text-white"></ion-icon>
+            <span ion-text color="light">{{ service.time }}</span>
+            <ion-icon name="checkbox-outline" margin-left class="text-white" *ngIf="trip.free_cancellation"></ion-icon>
+            <span ion-text color="light" *ngIf="trip.free_cancellation">Free cancellation</span>
+            <ion-icon name="list-box" margin-left class="text-white" *ngIf="trip.electric_voucher"></ion-icon>
+            <span ion-text color="light" *ngIf="trip.electric_voucher">Electronic voucher</span>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!--high light-->
+  <div class="border-bottom" padding>
+    <span ion-text color="dark" class="bold">HIGHLIGHT</span>
+    <ul class="highlight">
+      <li *ngFor="let highlight of trip.highlights">
+        <ion-icon name="checkmark" class="text-green"></ion-icon>
+        <span ion-text color="primary">{{ highlight }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <!--booking form-->
+  <div class="booking-form card round" margin>
+    <div class="border-bottom" padding>
+      <h5>{{ service.name }}</h5>
+
+      <!--choose guest-->
+      <ion-grid class="filters" no-padding margin-top>
+        <ion-row>
+          <ion-col class="adult" width-70>
+            <span ion-text color="primary"><strong>{{ service.price | currency:'USD':true }}</strong> </span>
+          </ion-col>
+
+        </ion-row>
+
+      </ion-grid>
+    </div>
+    <div padding class="form-bottom">
+<!--       <span ion-text color="dark" class="bold">{{ adults }} Adults</span> -->
+      <!--booking button-->
+      <button ion-button class="pull-right" color="secondary" tappable (click)="send(service)">Book Now {{ service.price | currency:'USD':true }}
+      </button>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <!--description-->
+  <div class="border-bottom" padding>
+    <span ion-text color="primary" class="bold">DESCRIPTION</span>
+    <p ion-text>{{ service.description }}</p>
+  </div>
+
+  <!--address-->
+  <div class="border-bottom" padding>
+    <span ion-text color="primary" class="bold">LOCATION</span>
+    <p ion-text>Porte de Versailles - Parc des Expositions, 75015 Paris</p>
+  </div>
+</ion-content>
